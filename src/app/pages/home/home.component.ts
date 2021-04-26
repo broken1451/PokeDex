@@ -56,6 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   irDetails(pokemon: Pokemon){
+    localStorage.setItem('pokemon', JSON.stringify(pokemon))
     this.router.navigate(['/pokemon/details', pokemon.id])
   }
 

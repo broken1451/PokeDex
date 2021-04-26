@@ -37,7 +37,6 @@ export class PokemonService {
         type,
       };
     });
-
     return pokemon;
   }
 

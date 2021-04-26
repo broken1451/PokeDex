@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   public termino: string = ''
+  @Input() showInput: boolean = true;
   @Output() terminoEmit: EventEmitter<string> = new EventEmitter<string>()
 
   constructor() { }
@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
   searchPokemon(termino: string){
     this.termino = termino;
     this.terminoEmit.emit(this.termino)
-    // console.log(document.querySelector('input[type=search]'))
   }
 
 }

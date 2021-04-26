@@ -22,7 +22,7 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li> -->
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <form class="form-inline my-2 my-lg-0" *ngIf="showInput">
         <input class="form-control mr-sm-2" #txtSearch (keyup)='searchPokemon(txtSearch.value)' type="text" placeholder="Search">
         <button class="btn btn-primary my-2 my-sm-0" type="button" (click)="searchPokemon(txtSearch.value)" style="border:red !important;">Search</button>
       </form>

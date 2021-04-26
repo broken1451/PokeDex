@@ -1,8 +1,8 @@
-<app-navbar (terminoEmit)="searchTerm($event)"></app-navbar>
+<app-navbar (terminoEmit)="searchTerm($event)" [showInput]='true'></app-navbar>
 
 <div class="row">
   <div class="card-columns container">
-    <div class="card mt-4" *ngFor="let poke of pokemon | filtro: page:termino" style="cursor: pointer;" (click)="irDetails(poke)">
+    <div class="card mt-4" *ngFor="let poke of pokemon | filtro:page:termino" style="cursor: pointer;" (click)="irDetails(poke)">
       <div class="text-center">
         <img
           [src]="poke.pic"
