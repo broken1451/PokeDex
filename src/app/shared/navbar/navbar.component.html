@@ -4,9 +4,9 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="background-color: red !important;">
     <a class="navbar-brand">
-      <img src="../../../assets/logo.png" alt="" width="200" height="50" class="d-inline-block align-text-top">
+      <img src="../../../assets/logo.png" style="cursor: pointer;" [routerLink]="['/pokemon/home']" alt="" width="200" height="50" class="d-inline-block align-text-top">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <button *ngIf="showInput" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
   
