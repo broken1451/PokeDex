@@ -1,14 +1,22 @@
 <app-navbar [showInput]='false'></app-navbar>
 
-<div class="row">
+<div class="row" *ngIf="loading">
+  <div class="col text-center">
+    <div class="spinner-border text-danger mt-4 " role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!loading">
+  <div class="row">
     <div class="col-md-6">
         <div class="text-center mt-5">
-            <img [src]="imgPokemon" width="300" height="280" class="img-fluid" alt="...">
-           
+            <img [src]="imgPokemon" width="300" height="280" class="img-fluid animate__animated animate__fadeIn" alt="...">
         </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 animate__animated animate__fadeIn">
       <nav>
         
         <div class="nav nav-tabs  mt-5" id="nav-tab" role="tablist">
@@ -19,7 +27,7 @@
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="tab-pane fade show active animate__animated animate__fadeIn" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
           <ul class="list-group">
             <li class="list-group-item d-flex justify-content-start align-items-end">
             <span>Type</span>
@@ -47,7 +55,7 @@
             </li>
           </ul>
         </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="tab-pane fade animate__animated animate__fadeIn" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
           <ul class="list-group">
           <div class="">
             <ul class="list-group">
@@ -63,22 +71,22 @@
           </div>
         </ul>
       </div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="tab-pane fade animate__animated animate__fadeIn" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
           <ul class="list-group">
-          <li class="list-group-item d-flex align-items-center ">
+          <li class="list-group-item ">
             <!-- <img *ngFor="let item of [0,0,0]" [src]="imgPokemon" width="300" height="280" class="img-fluid " alt="..."> -->
            <div  *ngFor="let evolution of pokemon?.evolutions" class="col-sm mb-3"  >
             <div class="card" (click)="goToDetail(evolution)">
               <div class="card-body">
                 <h4 class="card-title text-center mb-3">{{evolution.name | titlecase}}</h4>
-                <img src="{{imgsEvolutions}}{{evolution.id}}.png" alt="" class="img-fluid d-block mx-auto" style="width: 150px;">
+                <img src="{{imgsEvolutions}}{{evolution.id}}.png" alt="" class="img-fluid animate__animated animate__fadeIn" style="width: 150px;">
               </div>
             </div>
            </div>
           </li>
         </ul>
       </div>
-      <div class="tab-pane fade" id="nav-atack" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="tab-pane fade animate__animated animate__fadeIn" id="nav-atack" role="tabpanel" aria-labelledby="nav-profile-tab">
         <ul class="list-group">
           <div class="">
             <ul class="list-group">
@@ -94,4 +102,6 @@
       <button class="btn btn-danger w-100 my-2 my-sm-0" type="button" (click)="back()" style="border:red !important;">Regresar</button>
     </div>
 </div>
+</ng-container>
+
 

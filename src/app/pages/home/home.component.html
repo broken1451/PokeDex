@@ -1,50 +1,62 @@
 <app-navbar (terminoEmit)="searchTerm($event)" [showInput]='true'></app-navbar>
 
-<div class="row">
-  <div class="card-columns container">
-    <div class="card mt-4" *ngFor="let poke of pokemon | filtro:page:termino" style="cursor: pointer;" (click)="irDetails(poke)">
-      <div class="text-center">
-        <img
-          [src]="poke.pic"
-          class="img-fluid img-thumbnail text-center mt-3 w-50"
-          [alt]="poke.name"
-        />
-      </div>
-      <div class="card-body">
-        <h5 class="card-title">{{ poke.id }} - {{ poke.name | titlecase}}</h5>
-        <!-- <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p> -->
-        <div class="text-center">
-          <!-- <span *ngFor="let types of poke.type" class="badge bg-primary text-center ml-3">{{types | json}}</span> -->
-          <span *ngFor="let types of poke.type" class="badge text-center ml-3 p-3" [style.background]="_getTypeColour(types)">{{types | titlecase}}</span>
-        </div>
-      </div>
+<div class="row" *ngIf="loading">
+  <div class="col text-center">
+    <div class="spinner-border text-danger mt-4 " role="status">
+      <span class="sr-only">Loading...</span>
     </div>
   </div>
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-      <button
-        class="page-link"
-        tabindex="-1"
-        aria-disabled="true"
-        (click)="anteriores()"
-      >
-        Anteriores
-      </button>
-    </li>
-    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-    <li class="page-item">
-      <button
-        class="page-link"
-        [disabled]="(pokemon | filtro: page:termino).length == 0"
-        (click)="siguentes()"
-      >
-        Siguientes
-      </button>
-    </li>
-  </ul>
-</nav>
+<ng-container *ngIf="!loading" >
+  <div class="row">
+    <div class="card-columns container animate__animated animate__fadeIn" >
+      <div class="card mt-4" *ngFor="let poke of pokemon | filtro:page:termino" style="cursor: pointer;" (click)="irDetails(poke)">
+        <div class="text-center">
+          <img
+            [src]="poke.pic"
+            class="img-fluid img-thumbnail text-center mt-3 w-50 animate__animated animate__fadeIn"
+            [alt]="poke.name"
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ poke.id }} - {{ poke.name | titlecase}}</h5>
+          <!-- <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p> -->
+          <div class="text-center">
+            <!-- <span *ngFor="let types of poke.type" class="badge bg-primary text-center ml-3">{{types | json}}</span> -->
+            <span *ngFor="let types of poke.type" class="badge text-center ml-3 p-3" [style.background]="_getTypeColour(types)">{{types | titlecase}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <button
+          class="page-link"
+          tabindex="-1"
+          aria-disabled="true"
+          (click)="anteriores()"
+        >
+          Anteriores
+        </button>
+      </li>
+      <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+      <li class="page-item">
+        <button
+          class="page-link"
+          [disabled]="(pokemon | filtro: page:termino).length == 0"
+          (click)="siguentes()"
+        >
+          Siguientes
+        </button>
+      </li>
+    </ul>
+  </nav>
+</ng-container>
+
+

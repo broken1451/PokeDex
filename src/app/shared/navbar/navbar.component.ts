@@ -2,22 +2,25 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
-  public termino: string = ''
+  public termino!: string;
   @Input() showInput: boolean = true;
-  @Output() terminoEmit: EventEmitter<string> = new EventEmitter<string>()
+  @Output() terminoEmit: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  searchPokemon(termino: string) {
+    if (termino == '') {
+      this.termino = termino;
+      this.terminoEmit.emit(this.termino.toLowerCase());
+      return;
+    } else {
+      this.termino = termino;
+      this.terminoEmit.emit(this.termino.toLowerCase());
+    }
   }
-
-  searchPokemon(termino: string){
-    this.termino = termino;
-    this.terminoEmit.emit(this.termino)
-  }
-
 }

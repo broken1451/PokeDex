@@ -21,6 +21,7 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy{
   public pokemonstats: any[] = [];
   public totaStats!: number;
   public imgsEvolutions: string = 'https://pokeres.bastionbot.org/images/pokemon/';
+  public loading: boolean = true;
 
   constructor(private pokemonService:PokemonService,private router: Router , private activatedRoute: ActivatedRoute) { }
 
@@ -42,11 +43,13 @@ export class PokemonDetailsComponent implements OnInit, OnDestroy{
         return this.getPokemonById(idLocalstorage.id)
       })
     ).subscribe((pokemon)=>{
-      // console.log(pokemon)
       this.pokemon = pokemon;
       this.pokemon.evolutions = [];
     })
-    this.getEvolution()
+    setTimeout(() => {
+      this.getEvolution()
+      this.loading = false;
+    }, 2000);
   }
 
   ngOnDestroy(): void {
