@@ -1,3 +1,14 @@
 .container{
     max-width: 2000px !important;
 }
+
+.alert-danger {
+    color: black;
+    background-color: red;
+    width: 80%;
+}
+.padre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

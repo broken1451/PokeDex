@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   public arrStats: any[] = [];
   public arrMove: any[] = [];
   public loading: boolean = true;
+  public filterpoke!: any[];
 
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
@@ -79,6 +80,12 @@ export class HomeComponent implements OnInit {
   searchTerm(event: string) {
     this.page = 0;
     this.termino = event;
+    // filtrado cuando no hay pokemon con el termino a buscar
+    const filterpoke = this.pokemon.filter(poke => {
+      return poke.name.includes(this.termino) != false
+    })
+    this.filterpoke = filterpoke;
+  
   }
 
   getTypePokemon(id: string): any {

@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Output, Pipe, PipeTransform, EventEmitter } from '@angular/core';
 import { Pokemon } from '../interfaces/pokemon.interfaces';
 
 @Pipe({
@@ -6,14 +6,24 @@ import { Pokemon } from '../interfaces/pokemon.interfaces';
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(pokemons: Pokemon[], page: number = 0, termino:string = ''): Pokemon[] {
+  @Output() pokemons: EventEmitter<Pokemon[]> = new EventEmitter<Pokemon[]>();
 
+
+  transform(pokemons: Pokemon[], page: number = 0, termino:string = ''): Pokemon[] {
+  
     if (termino.length === 0) {
       return  pokemons.slice(page,page+6)
     }
   
-    const pokeFiltrados = pokemons.filter(poke=> poke.name.includes(termino))
-  
+    const pokeFiltrados = pokemons.filter(poke=> {
+     return poke.name.includes(termino)
+    })
+     
+    if (pokeFiltrados.length == 0) {
+      this.pokemons.emit(pokeFiltrados)
+      return []
+    }
+
     return pokeFiltrados.slice(page,page+6)
 
   }
