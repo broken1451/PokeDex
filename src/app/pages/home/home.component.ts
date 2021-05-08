@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   public arrMove: any[] = [];
   public loading: boolean = true;
   public filterpoke!: any[];
+  public pokesearch: boolean = true;
 
   constructor(private pokemonService: PokemonService, private router: Router) {}
 
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 1500);
+    this.pokesearch = true;
   }
 
   anteriores() {
@@ -85,6 +87,7 @@ export class HomeComponent implements OnInit {
       return poke.name.includes(this.termino) != false
     })
     this.filterpoke = filterpoke;
+    this.pokesearch = false;
   
   }
 

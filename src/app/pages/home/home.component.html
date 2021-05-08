@@ -8,14 +8,6 @@
   </div>
 </div>
 
-<!--  -->
-<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="filterpoke?.length == 0">
-  <div class="col padre">
-    <div class="alert alert-danger text-center" style="align-items: center;" role="alert">
-     No existen pokemons con el {{termino}}
-    </div>
-  </div>
-</div>
 
 <ng-container *ngIf="!loading" >
   <div class="row">
@@ -68,7 +60,16 @@
   </nav>
 </ng-container>
 
-<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="(pokemon | filtro: page:termino).length == 0 && !loading ">
+<!--  -->
+<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="filterpoke?.length == 0">
+  <div class="col padre">
+    <div class="alert alert-danger text-center" style="align-items: center;" role="alert">
+     No existen pokemons con el {{termino}}
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="(pokemon | filtro: page:termino).length == 0 && pokesearch">
   <div class="col padre">
     <div class="alert alert-danger text-center" style="align-items: center;" role="alert">
      Ya no hay mas pokemons
