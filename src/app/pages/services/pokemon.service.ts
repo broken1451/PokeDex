@@ -14,7 +14,7 @@ export class PokemonService {
   constructor(private httpClient: HttpClient) {}
 
   getAllPokemon(): Observable<Pokemon[]> {
-    const params = new HttpParams().set('limit', '15');
+    const params = new HttpParams().set('limit', '151');
     return this.httpClient
       .get<PokemonResponse>(`${URL}/pokemon`, { params })
       .pipe(
