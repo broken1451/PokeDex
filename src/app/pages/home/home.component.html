@@ -33,7 +33,7 @@
           <!-- <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p> -->
           <div class="text-center">
             <!-- <span *ngFor="let types of poke.type" class="badge bg-primary text-center ml-3">{{types | json}}</span> -->
-            <span *ngFor="let types of poke.type" class="badge text-center ml-3 p-3" [style.background]="_getTypeColour(types)">{{types | titlecase}}</span>
+            <span *ngFor="let types of poke.type" class="badge text-center ml-3 p-3 animate__animated animate__fadeIn" [style.background]="_getTypeColour(types)">{{types | titlecase}}</span>
           </div>
         </div>
       </div>
@@ -68,4 +68,11 @@
   </nav>
 </ng-container>
 
+<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="(pokemon | filtro: page:termino).length == 0 && !loading ">
+  <div class="col padre">
+    <div class="alert alert-danger text-center" style="align-items: center;" role="alert">
+     Ya no hay mas pokemons
+    </div>
+  </div>
+</div>
 
