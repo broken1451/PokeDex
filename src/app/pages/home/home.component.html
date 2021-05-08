@@ -69,7 +69,7 @@
   </div>
 </div>
 
-<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="(pokemon | filtro: page:termino).length == 0 && pokesearch">
+<div class="row mt-4 animate__animated animate__fadeIn" *ngIf="(pokemon | filtro: page:termino).length == 0 && pokesearch && !loading">
   <div class="col padre">
     <div class="alert alert-danger text-center" style="align-items: center;" role="alert">
      Ya no hay mas pokemons
